@@ -24,14 +24,7 @@ export async function onRequestGet(context) {
   };
 
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 30000);
-    const response = await fetch(targetUrl, {
-      ...fetchOptions,
-      signal: controller.signal,
-    });
-    clearTimeout(timeout);
-
+    const response = await fetch(targetUrl, fetchOptions);
     const headers = new Headers(response.headers);
     if (path && path.startsWith("_$flaredrive$/thumbnails/")) {
       headers.set("Cache-Control", "max-age=31536000");

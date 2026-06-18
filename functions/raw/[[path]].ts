@@ -14,8 +14,8 @@ export async function onRequestGet(context) {
 
   const newHeaders = new Headers(context.request.headers);
   newHeaders.delete("host");
-  newHeaders.delete("cookie");
   newHeaders.set("User-Agent", "Cloudflare-Worker/1.0");
+  newHeaders.set("Cookie", "ctn32=ctn32");
 
   const fetchOptions = {
     method: context.request.method,
